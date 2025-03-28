@@ -74,6 +74,11 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
+        # 添加环境变量 DISABLE_NEXT_TELEMETRY=1 以禁用 Next.js 遥测
+        # 添加环境变量 NEXT_DISABLE_LINT=true 以禁用 lint 检查
+        env:
+          DISABLE_NEXT_TELEMETRY: 1
+          NEXT_DISABLE_LINT: true
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
