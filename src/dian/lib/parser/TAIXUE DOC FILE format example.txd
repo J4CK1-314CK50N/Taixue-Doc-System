@@ -1,0 +1,72 @@
+TAIXUE DOC FILE
+
+
+$HEAD
+
+    $renderer-bg = https:114514
+    $renderer-font = SiyuanSong
+    $imgBaseUrl = https://resource.taixue.cc
+    $base-em-size = 10
+    $customProperties = 114514,1919810,2333
+
+    # now we define some paraphraces
+    $PARAGRAPH_IDENTIFIER = PARA
+
+$END
+
+
+
+$PARA
+    asdasdasd
+    asdasdasdasdasdasdasdasd
+    the value of "customProperties" is
+    $$ placeholder $$ {
+        $REPLACE=customProperties
+        $BOLD
+        $UNDERLINE=dashed
+    }
+    and imgBaseUrl is $$$imgBaseUrl$$$
+    and here is an IMAGE
+    $$ a showcase image $$ {
+        $IMAGE=$$$imgBaseUrl$$$/img/default.webp
+    }
+    and this is the end of the PARA
+$END
+
+$IMAGE=$$$imgBaseUrl$$$/img/1.png
+    this is a block-level image with captions like this
+$END
+
+$TITLE level=5
+    this is a TITLE
+$END
+
+$PARA
+    THIS IS A PLAIN TEXT
+
+    $BOLD $UNDERLINE=solid display=1
+        here are some bold and underlined text
+    this should not be included in the block
+
+    $BOLD
+    $ITALIC
+    $REPLACE=base-em-size
+        this text should be bold, italic and replaced
+
+    $NOTE
+    $THIN ratio=0.5
+    $UPPER {
+        inline-level commands can also apply to
+        multiline texts by using curly brackets
+        like this
+
+        $LINK=https://www.baidu.com/ {
+            content
+        }
+
+        $MULTILINE
+        $BOLD=50 {
+            content second
+        }
+    }
+$END

@@ -1,0 +1,61 @@
+TAIXUE DOC FILE                                             |   文件头，必须，没有文件头则认为格式损坏
+                                                            |   文件头 到 HEAD 块之间的任何内容均会被忽略，可以用来填写文档信息等无关渲染的内容
+                                                            |   文件以行为单位，每一行中只能是一个元素或者一种指令，不能压缩
+$HEAD                                                       |   HEAD 块的开始，必须独占一行，且第一个字符会作为文件指令开始的标志，可以替换为其他符号，默认为 dollar
+                                                            |   HEAD 块中可以有空行
+    $renderer-bg = https:114514                             |   内容之前的空格会被 trim 掉，可以随意缩进，所有指令必须用 指令开始符号开始，可以通过 HEAD 块的头来自定义
+    $renderer-font = SiyuanSong                             |   配置使用 保留字开始符号开始，名称可以是保留字开始符号和等号、空格以外的任何文本，这里也可以覆盖渲染引擎暴露的配置
+    $imgBaseUrl = https://resource.taixue.cc                |   配置项用 等号 间隔标识符和内容，类似 properties 格式，之后的内容会去除头尾空格（但保留中艰难空格）成为配置项的值
+    $base-em-size = 10                                      |   配置项只有字符串一种类型，渲染引擎暴露的配置可能会被转换为数字等其他格式，但在读取时并不会有强制要求
+    $customProperties = 114514,1919810,2333                 |   也可以填写自定义的配置项
+                                                            |
+    # now we define some paraphraces                         |   在 HEAD 块中可以使用 # 开头的行提供注释，以便标记变量的作用，正文中为了方便起见暂不支持注释
+    $PARAGRAPH_IDENTIFIER = PARA                            |   这里还可以为下文中的标识符自定义文本，这一部分采用全大写的蛇形写法。这可以增加可读性并提高本地化程度
+                                                            |
+$END                                                        |   所有块必须用结束关键字来结束，结束关键字的文本可以在 HEAD 块中自定义，默认为 END
+
+                                                            |   HEAD 块之后是正文部分，正文部分的空行会被忽略，可以随意空行
+
+$PARA                                                       |   使用段落开始指令开启一个段落
+    asdasdasd                                               |   段落是块级指令，对应正文中的一个自然段，内部每一行首尾的空格会被忽略，换行也会被忽略
+    asdasdasdasdasdasdasdasd                                |   这样方便在小尺寸的屏幕上浏览文件
+    the value of "customProperties" is                      |   头部中定义的变量，以及渲染引擎提供的变量可以在段落内被引用，通过行内级别的指令
+    $$ placeholder $$ {                                     |   行内级别的指令必须单独在一行，并将作用对象使用双重的 指令开始符号 包裹，后面跟随大括号
+        $REPLACE = customProperties                         |   大括号内可以编写对上述行内元素的行内级别指令，比如字体、字号、下划线等等。指令可以使用 等于号 来指定指令的参数
+        $BOLD                                               |   如果不提供参数，则认为指令是布尔型的，标识有，默认是无
+        $UNDERLINE = dashed                                 |   指令在渲染引擎处理中可能有默认值，也可能没有，因此有时候需要手动指定
+    }                                                       |   结束大括号单独占据一行。行内级别的指令中不能继续嵌套行内级别指令或块级别指令
+    and imgBaseUrl is $$$imgBaseUrl$$$                      |   行内内联变量也可以通过三个指令开始符号的简写方式来完成
+    and here is an IMAGE                                    |   图片可以是行内级别的指令，也可以是块级别的指令
+    $$ a showcase image $$ {
+        $IMAGE = $$$imgBaseUrl$$$/img/default.webp          |   行内图片可以用这种方式引用
+    }
+    and this is the end of the PARA
+$END
+
+$IMAGE = $$$imgBaseUrl$$$/img/1.png                         |   和行内元素类似，块级别的元素也可以用等号在后面指定参数
+    this is a block-level image with captions like this     |   图片块中的内容会成为图片的图注
+$END
+
+$TITLE level = 5                                            |   如果参数较多，或想要指定的不是指令的默认参数，可以用具名指定的方式来填写参数
+    this is a TITLE
+$END
+
+$PARA
+    $BOLD $UNDERLINE = solid                                |   行内级别指令的一种简写方式，可以在上一行中写多个行内指令
+        here are some bold and underlined text              |   然后其会对下面的一行内容产生作用
+    
+    $BOLD                                                   |   如果一行太长，或者涉及到更复杂的参数指定，那么
+    $ITALIC                                                 |   可以分为多行书写，解析器遇到新的行内指令会向下读取，知道遇到第一个非行内指令的行，
+    $REPLACE = base-em-size                                 |   并作用于这一行
+        this text should be bold, italic and replaced
+
+    $NOTE
+    $THIN
+    $UPPER {
+        inline-level commands can also apply to
+        multiline texts by using curly brackets
+        like this
+    }
+$END
+
