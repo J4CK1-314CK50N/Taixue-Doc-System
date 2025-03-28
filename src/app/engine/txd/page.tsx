@@ -43,7 +43,43 @@ testRenderer.elements[testElement.key] = testElement;
 const TaixueDocFilePage: React.FC = () => {
     const [userText, setUserText] = useLocalStorage(
         'txdPlaygroundUserText',
-        "TAIXUE DOC FILE\n\n\n\n$HEAD\n  $VAR1=114514\n  $var2=1919810\n$END\n\n$PARA\n  This is a example paragraph\n  with some example text...\n$END\n\n"
+`TAIXUE DOC FILE
+
+$HEAD
+  $VAR1=114514
+  $var2=1919810
+$END
+
+$TITLE
+    THIS IS A 
+
+  $ITALIC
+    TITLE 
+
+    WITH MORE 
+
+  $UNDERLINE
+    INFORMATION AND CONTEXT
+$END
+
+$PARAGRAPH
+    This is a example paragraph. 
+    with some 
+  $ITALIC
+    example 
+  $CODE $BOLD
+    text...
+$END
+
+$IMAGE=https://tse3-mm.cn.bing.net/th/id/OIP-C.nQnLGzY_lqpiJx6pwmF-yAHaEO?w=290&h=180&c=7&r=0&o=5&pid=1.7
+    A image to show the 
+  $BOLD
+    ability 
+    of this Image Block 
+  $DELETE
+    which I don't realy know
+$END
+`
     );
     const [my_json_object, setMyJsonObject] = useState({});
     const [error, setError] = useState<string | undefined>(undefined);
