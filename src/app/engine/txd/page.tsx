@@ -26,7 +26,7 @@ const testElement = createBlockElementInfo(
     'TEST',
     '这是一个测试元素，用于测试渲染器的功能',
     'TEST_COMMAND_NAME',
-    (props) => {
+    () => {
         return (
             <div>
                 <h1>这是一个测试元素</h1>
