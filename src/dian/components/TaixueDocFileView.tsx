@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useMemo, useState } from "react";
 import { BlockElementInfo, Renderer } from "../lib/framework/renderer";
-import { useLocalStorage } from "../lib/hooks/use_local_storage"
+import useLocalStorage from "../lib/hooks/use_local_storage"
 import { TxdDocument } from "../types/TxdDocumentTypes";
 import { parseTxdDocument } from "../lib/parser/parser";
 import { ObjectView } from "react-object-view";

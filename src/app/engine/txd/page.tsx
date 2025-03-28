@@ -13,7 +13,7 @@ import { ObjectView } from 'react-object-view';
 import TaixueDocFileView from "@/dian/components/TaixueDocFileView";
 import { createBlockElementInfo, createRenderer } from "@/dian/lib/framework/renderer";
 import GoldenbergRenderer from "@/dian/builtin/renderer/goldenberg/goldenberg_renderer";
-import { useLocalStorage } from "@/dian/lib/hooks/use_local_storage";
+import useLocalStorage from "@/dian/lib/hooks/use_local_storage";
 
 const testRenderer = createRenderer(
     'test_renderer',
