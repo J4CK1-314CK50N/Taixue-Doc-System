@@ -14,6 +14,7 @@ import TaixueDocFileView from "@/dian/components/TaixueDocFileView";
 import { createBlockElementInfo, createRenderer } from "@/dian/lib/framework/renderer";
 import GoldenbergRenderer from "@/dian/builtin/renderer/goldenberg/goldenberg_renderer";
 import useLocalStorage from "@/dian/lib/hooks/use_local_storage";
+import Link from "next/link";
 
 const testRenderer = createRenderer(
     'test_renderer',
@@ -69,8 +70,14 @@ const TaixueDocFilePage: React.FC = () => {
                     <h1 className="text-center text-5xl font-bold sm:text-6xl">
                         Taixue Doc File Playground.
                     </h1>
-                    <p className="text-center text-lg">
-                        See <code className="font-mono text-[#16a34a]">/engine/txd</code> to see the TaixueDoc File definitions, and try with the playground.
+                    <p className="text-center text-lg m-6">
+                        See
+                        <code className="font-mono text-[#16a34a]">
+                            <Link href="../engine/renderers">
+                                /engine/renderers
+                            </Link>
+                        </code>
+                        to see the Documents of renderers.
                     </p>
                 </div>
                 {/* // 在左侧添加一个monaco编辑器，在右侧添加一个json展示 */}
