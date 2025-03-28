@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { BlockElementInfo, Renderer } from "../lib/framework/renderer";
 import { useLocalStorage } from "../lib/hooks/use_local_storage"
-import { BlockElement, TxdDocument } from "../types/TxdDocumentTypes";
+import { TxdDocument } from "../types/TxdDocumentTypes";
 import { parseTxdDocument } from "../lib/parser/parser";
 import { ObjectView } from "react-object-view";
 
